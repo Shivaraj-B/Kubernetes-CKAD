@@ -1,0 +1,22 @@
+kubectl get pod redis -o yaml    ==== open the yaml file for a pod
+kubectl get pod redis -o yaml > redis.yaml === store the yaml into a file
+kubectl get pods --selector env=dev
+kubectl get pod --selector env=prod,bu=finance,tier=frontend
+kubectl run newpod --image=nginx
+kubectl run httpd --image=httpd:alpine --expose=true --port=80
+kubectl run nginx --image=nginx --dry-run=client -o yaml > nginx-pod.yaml.  === dry run will not create the resource. Instead, tell you whether the resource can be created and if your command is right. This command can be used when you want to generate a manifest and don’t apply it
+kubectl delete pod NAME --grace-period=0 --force
+
+
+Editing a POD
+kubectl get pod webapp -o yaml > my-new-pod.yaml
+vi my-new-pod.yaml
+kubectl delete pod webapp
+kubectl create -f my-new-pod.yaml
+
+Editing a POD inside a deployment
+kubectl edit deployment my-deployment
+
+Getting into a Pod and checking logs:
+kubectl exec webapp -- cat /log/app.log
+
